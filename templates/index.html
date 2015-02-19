@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <div class="container">
+    <div class="container" ng-app="myApp">
 
         <div class="row">
             <div class="col-md-4">
@@ -22,17 +22,15 @@
                 </form>
 
             </div>
-            <div class="col-md-8">
-
+            <div class="col-md-8" ng-controller="MainCtrl">
+            {% raw %}
                 <h2>Messages</h2>
-                {% if messages %}
-                    {% for m in messages %}
-                        <p>"{{ m.message }}"</p>
-                        <p>{{ m.sender }} ({{ m.dt }})</p>
-                    {% endfor %}
-                {% else %}
-                    <p>No messages found.</p>
-                {% endif %}
+                <div ng-repeat="message in messages.messages">
+                    <p>On {{ message.dt }} {{ message.sender }} said:</p>
+                    <p>{{ message.message }}</p>
+                </div>
+            {% endraw %}
+
             </div>
         </div>
     </div>
